@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediGuide AI | Symptom Checker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="MediGuide AI home">
+      <span class="brand-mark">+</span>
+      <span>MediGuide AI</span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#checker">Checker</a>
+      <a href="#clinics">Clinics</a>
+      <a href="#dashboard">Dashboard</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p class="eyebrow">AI-based pre-screening system</p>
+        <h1>Find the right clinic before you leave home.</h1>
+        <p class="hero-copy">
+          Enter symptoms, severity, and duration to receive an urgency level,
+          clinic recommendation, and next-step guidance.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-button" href="#checker">Start Symptom Check</a>
+          <a class="secondary-button" href="#clinics">View Clinics</a>
+        </div>
+      </div>
+      <div class="hero-panel" aria-label="System preview">
+        <div class="status-strip">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="scan-card">
+          <p>Current Result</p>
+          <h2>General Clinic</h2>
+          <span class="tag moderate">Moderate urgency</span>
+        </div>
+        <div class="metric-row">
+          <div>
+            <strong>24</strong>
+            <span>Symptoms</span>
+          </div>
+          <div>
+            <strong>8</strong>
+            <span>Clinic types</span>
+          </div>
+          <div>
+            <strong>4</strong>
+            <span>Urgency levels</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="notice" aria-label="Medical safety note">
+      <strong>Safety note:</strong>
+      This project is for pre-screening and clinic recommendation only. It does not replace a licensed doctor or emergency medical care.
+    </section>
+
+    <section class="checker-section" id="checker">
+      <div class="section-heading">
+        <p class="eyebrow">Symptom checker</p>
+        <h2>Patient Information</h2>
+      </div>
+
+      <div class="checker-layout">
+        <form class="checker-form" id="symptomForm">
+          <div class="form-grid">
+            <label>
+              Full name
+              <input type="text" id="patientName" placeholder="Example: Alex Cruz" required>
+            </label>
+
+            <label>
+              Age
+              <input type="number" id="age" min="1" max="120" placeholder="Example: 16" required>
+            </label>
+
+            <label>
+              Duration
+              <select id="duration" required>
+                <option value="">Select duration</option>
+                <option value="1">Less than 1 day</option>
+                <option value="2">1-3 days</option>
+                <option value="4">4-7 days</option>
+                <option value="8">More than 1 week</option>
+              </select>
+            </label>
+
+            <label>
+              Severity
+              <select id="severity" required>
+                <option value="">Select severity</option>
+                <option value="mild">Mild</option>
+                <option value="moderate">Moderate</option>
+                <option value="severe">Severe</option>
+              </select>
+            </label>
+          </div>
+
+          <fieldset>
+            <legend>Select symptoms</legend>
+            <div class="symptom-list" id="symptomList">
+              <label><input type="checkbox" value="fever"> Fever</label>
+              <label><input type="checkbox" value="cough"> Cough</label>
+              <label><input type="checkbox" value="sore throat"> Sore throat</label>
+              <label><input type="checkbox" value="headache"> Headache</label>
+              <label><input type="checkbox" value="stomach pain"> Stomach pain</label>
+              <label><input type="checkbox" value="vomiting"> Vomiting</label>
+              <label><input type="checkbox" value="skin rash"> Skin rash</label>
+              <label><input type="checkbox" value="tooth pain"> Tooth pain</label>
+              <label><input type="checkbox" value="eye redness"> Eye redness</label>
+              <label><input type="checkbox" value="joint pain"> Joint pain</label>
+              <label><input type="checkbox" value="chest pain"> Chest pain</label>
+              <label><input type="checkbox" value="difficulty breathing"> Difficulty breathing</label>
+            </div>
+          </fieldset>
+
+          <label>
+            Extra notes
+            <textarea id="notes" rows="4" placeholder="Example: Symptoms became worse after school yesterday."></textarea>
+          </label>
+
+          <div class="form-actions">
+            <button type="submit">Analyze Symptoms</button>
+            <button type="reset" class="ghost-button">Clear</button>
+          </div>
+        </form>
+
+        <aside class="result-card" id="resultCard" aria-live="polite">
+          <p class="eyebrow">Recommendation</p>
+          <h2 id="resultTitle">Waiting for symptoms</h2>
+          <p id="resultSummary">Fill out the form to generate a clinic recommendation.</p>
+
+          <div class="result-grid">
+            <div>
+              <span>Urgency</span>
+              <strong id="urgencyText">--</strong>
+            </div>
+            <div>
+              <span>Clinic</span>
+              <strong id="clinicText">--</strong>
+            </div>
+          </div>
+
+          <div class="advice-box">
+            <h3>Advice</h3>
+            <p id="adviceText">Your result will appear here after analysis.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="clinics-section" id="clinics">
+      <div class="section-heading">
+        <p class="eyebrow">Clinic finder</p>
+        <h2>Recommended Departments</h2>
+      </div>
+
+      <div class="clinic-grid">
+        <article class="clinic-card">
+          <span>01</span>
+          <h3>General Clinic</h3>
+          <p>Fever, cough, headache, stomach pain, common infections, and basic checkups.</p>
+        </article>
+        <article class="clinic-card">
+          <span>02</span>
+          <h3>Emergency Care</h3>
+          <p>Chest pain, breathing difficulty, severe bleeding, fainting, or dangerous symptoms.</p>
+        </article>
+        <article class="clinic-card">
+          <span>03</span>
+          <h3>Dental Clinic</h3>
+          <p>Tooth pain, swollen gums, mouth wounds, and dental consultation needs.</p>
+        </article>
+        <article class="clinic-card">
+          <span>04</span>
+          <h3>Dermatology</h3>
+          <p>Skin rash, itchiness, acne concerns, allergies, and visible skin irritation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="dashboard-section" id="dashboard">
+      <div class="section-heading">
+        <p class="eyebrow">Admin preview</p>
+        <h2>System Dashboard</h2>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="stat-card">
+          <span>Total Checks</span>
+          <strong id="totalChecks">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>Emergency Flags</span>
+          <strong id="emergencyFlags">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>Most Recent Clinic</span>
+          <strong id="recentClinic">--</strong>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>MediGuide AI capstone prototype. Built for responsive web demonstration.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
